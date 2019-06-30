@@ -9,7 +9,7 @@ This a single file datepicker picker without any library.
 How to use:
 
 HTML Code:
-'<input id="datetimepicker">'
+&lt;input id="datetimepicker"&gt;
 JS Code:
 datetimepicker('#datetimepicker');
 
