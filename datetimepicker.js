@@ -7,7 +7,7 @@ function datetimepicker(element){
 	self.document = function(selector){
 		return document.querySelector(selector);
 	}
-	self.isCheck = function(){
+	self.init = function(){
 		let holder = document.querySelector(self.element);
 		if(!holder){
 			throw new Error("Element not exist.");
@@ -39,12 +39,14 @@ function datetimepicker(element){
 	self.drawCalContainer = function(e){
         var calWrap = document.createElement("div");
 		calWrap.style.display = 'block'; 
-        calWrap.style.position = 'absolute';
+        calWrap.style.position = 'fixed';
         calWrap.style.width = '300px';
         calWrap.style.background = '#ddd';
+        calWrap.style.zIndex = '99999999';
         calWrap.id = 'calWrap';
-		calWrap.style.top = ((e.target.offsetTop + e.target.clientTop) + e.target.offsetHeight) + 'px';
-		calWrap.style.left = ((e.target.offsetLeft + e.target.clientLeft) - 2) + 'px';
+		let pos = e.target.getBoundingClientRect();
+		calWrap.style.top = pos.top + e.target.offsetHeight + 'px';
+		calWrap.style.left = pos.left + 'px';
 		document.body.appendChild(calWrap);
         self.document('#calWrap').innerHTML = '<div id="calWrapper"><div id="calContainer"></div></div>';
 		return this;
@@ -57,7 +59,7 @@ function datetimepicker(element){
 			calBody += '<div id="calHeaderText">' + calHeaderText[i] + '</div>';
 		}
 		calBody += '</div></div><div id="calDaysBody"></div>';
-		let hour = date.getHours();
+		let hour = (date.getHours() > 12 || date.getHours == 0)? date.getHours() - 12 : "12";
 		let minute = date.getMinutes();
 		let amOrPm = (date.getHours() > 12)? 'PM' : 'AM';
 		calBody += '<div id="timeContainer"><div id="timeText"><span id="addHour" class="calPointer">&#x25B2;</span><input type="number" class="timeInput" id="hourText" value='+ self.padNumber(self.setHour(hour)) +'><span id="subHour" class="calPointer">&#x25BC;</span></div><span id="timeText">:</span><div id="timeText"><span id="addMinute" class="calPointer">&#x25B2;</span><input type="number"  class="timeInput" id="minuteText" value='+ self.padNumber(self.setMinutes(minute)) +'><span id="subMinute" class="calPointer">&#x25BC;</span></div><span id="timeText">:</span><div id="timeText"><span id="timeAnte" class="calPointer">&#x25B2;</span><span id="amOrpmText">'+ amOrPm +'</span><span id="timePost" class="calPointer">&#x25BC;</span></div></div>';
@@ -279,6 +281,6 @@ function datetimepicker(element){
 		let output =  self.selectedMonth + " " + self.selectedDay + " " + self.document('#yearVal').innerHTML + " " + self.document('#hourText').value + ":" + self.document('#minuteText').value + " " + self.document('#amOrpmText').innerHTML;
 		self.document(self.element).value = output;
 	}
-	return self.isCheck();
+	return self.init();
 
 }
