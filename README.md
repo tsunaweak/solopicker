@@ -2,7 +2,7 @@
 Javascript Simple DateTimePicker
 
 
-This a single file datepicker picker without any library.
+This a single file datetimepicker without any library.
 
 
 
