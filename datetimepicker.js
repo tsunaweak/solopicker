@@ -110,7 +110,18 @@ function datetimepicker(element){
 	self.eventListener = function(){
 		//close
 		self.setEvent('#calClose', function(){
-			self.document('#calWrapper').remove();
+			let hour = self.document('#hourText').value;
+			if(hour.length == 0){
+				hour = self.padNumber(self.setHour(date.getHours()));
+			}
+			self.document('#hourText').value = self.padNumber(hour);
+			let minute = self.document('#minuteText').value;
+			if(minute.length == 0){
+				minute = self.padNumber(self.setHour(date.getMinutes()));
+			}
+			self.document('#minuteText').value = self.padNumber(minute);
+			self.setOutput();
+			self.document('#calWrap').remove();
 			self.document('style').remove();
 		});
 		//Month
@@ -172,6 +183,7 @@ function datetimepicker(element){
 				hourText = 12;
 			}
 			self.document('#hourText').value = hourText;
+			self.setOutput();
 		});
 		//Minute
 		self.setEvent('#addMinute', function(){
@@ -195,6 +207,7 @@ function datetimepicker(element){
 				minuteText = 60;
 			}
 			self.document('#minuteText').value = minuteText;
+			self.setOutput();
 		});
 		//AMorPM
 		self.setEvent('#timePost', function(){
