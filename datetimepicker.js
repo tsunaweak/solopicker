@@ -31,7 +31,7 @@ function datetimepicker(element){
 	}
 	self.setStyles = function(){
 		let style = document.createElement('style');
-		let calStyle = 'input[type="number"]{-moz-appearance:textfield!important;}input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance: none!important;}#calWrapper{position: relative;}#calContainer{position: relative;width: inherit;height: inherit;}#calHeader{display: flex;width: 100%;background: #bbb;justify-content: space-around;align-items: center;}#calDaysHeader{margin: 0;padding: 10px 0;background: #ddd;font-size: 13px;color: #000;}#calDaysBody{background: #eee;margin: 0;}.calDateNow{font-size: 15px;background: #ccc;font-weight: bold;}#calDays{display: inline-block; width: 14.28%; text-align: center; font-size: 13px; color: #777; cursor: pointer;}#calDays:hover{font-size: 15px;background: #ddd;font-weight: bold;}#timeContainer{width: 100%;background-color: #ddd;display: flex;justify-content: center;text-align: center;font-weight: bold;font-size: 15px;}#timeText{padding: 5px 5px;}#calHeaderOption{font-weight: bold;padding: 10px 0px;}#calDaysHeader{margin: 0; padding: 10px 0; background: #ddd; font-size: 13px; color: #000;}#calHeaderText{display: inline-block; width: 14.28%; color: #666; font-weight: bold; text-align: center;}#calClose{position: absolute;display: block;right: 0;margin-top: -20px;margin-right: -8px;border-radius: 50%;cursor: pointer;background: #ddd;padding: 0px 3px;font-size: 12px;}.calPointer{cursor: pointer!important;}.timeInput{width: 20px;border: 1px solid #bbb;text-align: center;font-weight: bold;}.calArrow{margin: auto 5px;}';
+		let calStyle = 'input[type=number]{-moz-appearance:textfield!important}input::-webkit-inner-spin-button,input::-webkit-outer-spin-button{-webkit-appearance:none!important}#calWrap{width:260px;border:1px solid #bbb}#calWrapper{position:relative}#calContainer{position:relative;width:inherit;height:inherit}#calHeader{display:flex;width:100%;justify-content:space-around;align-items:center;height:100%;border-bottom:1px solid #bbb}#calDaysHeader{margin:0;padding:10px 0;font-size:13px;font-weight:700;border-bottom:1px solid #bbb}#calDaysBody{margin:0;padding:5px 0;border-bottom:1px solid #bbb}.calDateNow{font-size:15px;background:#ccc;font-weight:700}#calDays{display:inline-block;width:14.28%;text-align:center;font-size:15px;cursor:pointer}#calDays:hover{font-size:15px;background:#ddd;font-weight:700}#timeContainer{width:100%;display:flex;justify-content:center;text-align:center;font-weight:700;font-size:15px}#timeText{padding:5px 5px}#calHeaderOption{font-weight:700;padding:15px;display:flex}.headText{padding:0 10px;font-weight:700}#calHeaderText{display:inline-block;width:14.28%;color:#666;font-weight:700;text-align:center}#calClose{position:absolute;display:block;right:0;margin-top:-20px;margin-right:-8px;border-radius:50%;cursor:pointer;background:#ddd;padding:0 3px;font-size:12px}.calPointer{cursor:pointer!important}.timeInput{width:20px;border:1px solid #bbb;text-align:center;font-weight:700}.calArrow{padding:0 5px;cursor:pointer}.calArrow:hover{background:#d9d4d1;font-weight:bolder}.from_prev_month{color:#696969;}.from_next_month{color:#696969;}';
 		style.innerHTML = calStyle;
 		document.head.appendChild(style);
 		return this;
@@ -40,8 +40,7 @@ function datetimepicker(element){
         var calWrap = document.createElement("div");
 		calWrap.style.display = 'block'; 
         calWrap.style.position = 'fixed';
-        calWrap.style.width = '300px';
-        calWrap.style.background = '#ddd';
+        calWrap.style.width = '260px';
         calWrap.style.zIndex = '99999999';
         calWrap.id = 'calWrap';
 		let pos = e.target.getBoundingClientRect();
@@ -53,7 +52,7 @@ function datetimepicker(element){
 	}
 	self.drawBody = function(){
 		let calContainer = self.document('#calContainer');
-		let calBody = '<div id="calHeader"><div id="calHeaderOption"><span id="prevMonth" class="calPointer calArrow">&#171;</span><span id="MonthVal">'+ monthArr[date.getMonth()]+'</span><span id="nextMonth" class="calPointer calArrow">&#187;</span></div><div id="calHeaderOption"><span id="prevYear" class="calPointer calArrow">&#171;</span><span id="yearVal">'+ date.getFullYear() +'</span><span id="nextYear" class="calPointer calArrow">&#187;</span></div><span id="calClose">&#x274C;</span></div>';
+		let calBody = '<div id="calHeader"><div id="calHeaderOption"><span id="prevMonth" class="calPointer calArrow">&#171;</span><span id="MonthVal" class="headText">'+ monthArr[date.getMonth()]+'</span><span id="nextMonth" class="calPointer calArrow">&#187;</span></div><div id="calHeaderOption"><span id="prevYear" class="calPointer calArrow">&#171;</span><span id="yearVal" class="headText">'+ date.getFullYear() +'</span><span id="nextYear" class="calPointer calArrow">&#187;</span></div><span id="calClose">&#x274C;</span></div>';
 		calBody += '<div id="calDaysHeader">';
 		for(let i = 0; i < calHeaderText.length; i++){
 			calBody += '<div id="calHeaderText">' + calHeaderText[i] + '</div>';
