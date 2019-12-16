@@ -10,7 +10,7 @@ How to use:
 
 HTML Code:
 &lt;input id="datetimepicker"&gt; <br/>
-JS Code:
+JS Code: <br/>
 Show Hour and Minute <br/>
 datetimepicker('#datetimepicker'); <br/> 
 datetimepicker({
