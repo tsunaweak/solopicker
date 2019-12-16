@@ -1,6 +1,16 @@
 function datetimepicker(element){
 	var self = {};
-	self.element = element;
+	if(typeof(element) == 'object'){
+		self.element = element.target;
+		if(element.time === false){
+			self.time = false;
+		}else{
+			self.time = true;
+		}
+	}else{
+		self.element = element;
+		self.time = false;
+	}
 	var date = new Date();
 	var monthArr =  ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	var calHeaderText = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -65,6 +75,11 @@ function datetimepicker(element){
 		let month = self.document('#MonthVal');
 		let year = self.document('#yearVal');
 		calContainer.innerHTML = calBody;
+		if(self.time === false){
+			document.querySelector('#timeContainer').style.display = "none";
+		}else{
+			document.querySelector('#timeContainer').style.display = "flex";
+		}
 		return this;	
 	}
 	self.drawCalDaysBody = function(){
@@ -290,9 +305,13 @@ function datetimepicker(element){
 		if(self.selectedDay == undefined){
 			self.selectedDay = date.getDate();
 		}
-		let output =  self.selectedMonth + " " + self.selectedDay + " " + self.document('#yearVal').innerHTML + " " + self.document('#hourText').value + ":" + self.document('#minuteText').value + " " + self.document('#amOrpmText').innerHTML;
+		if(self.time === false){
+			var output =  self.selectedMonth + " " + self.selectedDay + ", " + self.document('#yearVal').innerHTML;
+		}else{
+			var output =  self.selectedMonth + " " + self.selectedDay + ", " + self.document('#yearVal').innerHTML + " " + self.document('#hourText').value + ":" + self.document('#minuteText').value + " " + self.document('#amOrpmText').innerHTML;
+		}
+		
 		self.document(self.element).value = output;
 	}
 	return self.init();
-
 }

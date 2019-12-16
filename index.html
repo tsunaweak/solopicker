@@ -2,12 +2,15 @@
 <html>
 <head>
 	<title>Solipicker</title>
-	<script type="text/javascript" src="datetimepicker.js"></script>
+	<script type="text/javascript" src="datetimepicker.min.js"></script>
 </head>
 <body>
-	<input type="text" name="datetimepicker" id="datetimepicker">
+	<input type="text" name="datetimepicker" id="datetimepicker">	
 </body>
 </html>
 <script type="text/javascript">
-	datetimepicker('#datetimepicker');
+	datetimepicker({
+		'target': '#datetimepicker',
+		'time': true
+	});
 </script>
