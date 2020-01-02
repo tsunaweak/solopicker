@@ -3,14 +3,39 @@
 <head>
 	<title>Solipicker</title>
 	<script type="text/javascript" src="datetimepicker.min.js"></script>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<input type="text" name="datetimepicker" id="datetimepicker">	
+	<section>
+		<h1>Solopicker Demo</h1>
+		<div class="flexbox">
+			<div class="column">
+				<label>Date Only</label>
+				<h3>Example: </h3>
+				<p>
+					datetimepicker({'target': '#dateonly','time': false});
+				</p>
+				<input type="text" id="dateonly">
+			</div>
+			<div class="column">
+				<label>Date and Time</label>
+				<h3>Example: </h3>
+				<p>
+					datetimepicker({'target': '#datetime','time': true});
+				</p>
+				<input type="text" id="datetime">
+			</div>
+		</div>
+	</section>
 </body>
 </html>
 <script type="text/javascript">
 	datetimepicker({
-		'target': '#datetimepicker',
+		'target': '#dateonly',
+		'time': false
+	});
+	datetimepicker({
+		'target': '#datetime',
 		'time': true
 	});
 </script>
